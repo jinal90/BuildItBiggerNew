@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors{
+        paid{
+            applicationId "com.udacity.jinal.buildbigger.app.paid"
+        }
+        free{
+            applicationId "com.udacity.jinal.buildbigger.app.free"
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile project(path: ':JokeBackend', configuration: 'android-endpoints')
+    compile project(':mydisplayandroidlib')
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+    freeCompile 'com.google.android.gms:play-services-ads:7.8.0'
+}
